@@ -1,0 +1,8 @@
+model_list:
+  - model_name: nvidia-model
+    litellm_params:
+      model: nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b
+      api_key: os.environ/NVIDIA_NIM_API_KEY
+
+litellm_settings:
+  drop_params: true
