@@ -1,8 +1,69 @@
 model_list:
-  - model_name: "nvidia_nim/*"
+  # ---------------------------------------------------------
+  # Standard Claude desktop defaults mapped to NVIDIA NIM free endpoints
+  # ---------------------------------------------------------
+  - model_name: "claude-3-5-sonnet-20241022"
+    litellm_params:
+      model: "nvidia_nim/meta/llama-3.3-70b-instruct"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  - model_name: "claude-3-5-haiku-20241022"
+    litellm_params:
+      model: "nvidia_nim/nvidia/mistral-nemo-12b-instruct"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  - model_name: "claude-3-opus-20240229"
+    litellm_params:
+      model: "nvidia_nim/deepseek-ai/deepseek-r1"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  - model_name: "claude-3-opus-20260925"
+    litellm_params:
+      model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  # ---------------------------------------------------------
+  # Custom Claude aliases for preview & popular free NIM endpoints
+  # ---------------------------------------------------------
+  - model_name: "claude-3-5-sonnet-nemo-3-ultra"
+    litellm_params:
+      model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  - model_name: "claude-3-5-sonnet-nemo-3-super"
+    litellm_params:
+      model: "nvidia_nim/nvidia/nemotron-3-super-120b-a12b"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  - model_name: "claude-3-5-sonnet-nemotron-70b"
+    litellm_params:
+      model: "nvidia_nim/nvidia/llama-3.1-nemotron-70b-instruct"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  - model_name: "claude-3-5-sonnet-kimi-k3"
+    litellm_params:
+      model: "nvidia_nim/moonshotai/kimi-k3"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  - model_name: "claude-3-5-sonnet-glm-5"
+    litellm_params:
+      model: "nvidia_nim/z-ai/glm-5-3"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  - model_name: "claude-3-5-sonnet-qwen-72b"
+    litellm_params:
+      model: "nvidia_nim/qwen/qwen2.5-72b-instruct"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  # ---------------------------------------------------------
+  # Dynamic Wildcard Route
+  # Any custom model requested as "claude-nim-<provider>/<model>" routes directly to NIM
+  # ---------------------------------------------------------
+  - model_name: "claude-nim-*"
     litellm_params:
       model: "nvidia_nim/*"
-      api_key: os.environ/NVIDIA_NIM_API_KEY
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
 litellm_settings:
   drop_params: true
+  set_verbose: false
