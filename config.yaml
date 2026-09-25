@@ -1,20 +1,18 @@
 model_list:
-  # ---------------------------------------------------------
-  # Standard Claude desktop defaults mapped to NVIDIA NIM free endpoints
-  # ---------------------------------------------------------
+  # Standard Claude Desktop aliases
   - model_name: "claude-3-5-sonnet-20241022"
     litellm_params:
-      model: "nvidia_nim/meta/llama-3.3-70b-instruct"
+      model: "z-ai/glm-5.3"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
   - model_name: "claude-3-5-haiku-20241022"
     litellm_params:
-      model: "nvidia_nim/meta/llama-3.1-8b-instruct"
+      model: "meta/llama-3.2-90b-vision-instruct"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
   - model_name: "claude-3-opus-20240229"
     litellm_params:
-      model: "nvidia_nim/deepseek-ai/deepseek-r1"
+      model: "deepseek-ai/deepseek-v4.1-flash"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
   - model_name: "claude-3-opus-20260925"
@@ -22,47 +20,29 @@ model_list:
       model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
-  # ---------------------------------------------------------
-  # Custom Claude aliases for preview & popular free NIM endpoints
-  # ---------------------------------------------------------
-  - model_name: "claude-3-5-sonnet-nemo-3-ultra"
+  # Verified NVIDIA NIM Models
+  - model_name: "claude-3-5-sonnet-glm-5.3"
     litellm_params:
-      model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b"
-      api_key: "os.environ/NVIDIA_NIM_API_KEY"
-
-  - model_name: "claude-3-5-sonnet-nemo-3-super"
-    litellm_params:
-      model: "nvidia_nim/nvidia/nemotron-3-super-120b-a12b"
-      api_key: "os.environ/NVIDIA_NIM_API_KEY"
-
-  - model_name: "claude-3-5-sonnet-nemotron-70b"
-    litellm_params:
-      model: "nvidia_nim/nvidia/llama-3.1-nemotron-70b-instruct"
+      model: "z-ai/glm-5.3"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
   - model_name: "claude-3-5-sonnet-kimi-k3"
     litellm_params:
-      model: "nvidia_nim/moonshotai/kimi-k3"
+      model: "moonshotai/kimi-k3"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
-  - model_name: "claude-3-5-sonnet-glm-5"
+  - model_name: "claude-3-5-sonnet-deepseek-v4.1-flash"
     litellm_params:
-      model: "nvidia_nim/z-ai/glm-5-3"
+      model: "deepseek-ai/deepseek-v4.1-flash"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
-  - model_name: "claude-3-5-sonnet-qwen-72b"
-    litellm_params:
-      model: "nvidia_nim/qwen/qwen2.5-72b-instruct"
-      api_key: "os.environ/NVIDIA_NIM_API_KEY"
-
-  # ---------------------------------------------------------
-  # Dynamic Wildcard Route
-  # Any custom model requested as "claude-nim-<provider>/<model>" routes directly to NIM
-  # ---------------------------------------------------------
+  # Wildcard route (with health check disabled so it doesn't fail /health)
   - model_name: "claude-nim-*"
     litellm_params:
       model: "nvidia_nim/*"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
+    model_info:
+      disable_background_health_check: true
 
 litellm_settings:
   drop_params: true
