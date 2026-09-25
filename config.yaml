@@ -9,7 +9,7 @@ model_list:
 
   - model_name: "claude-3-5-haiku-20241022"
     litellm_params:
-      model: "nvidia_nim/nvidia/mistral-nemo-12b-instruct"
+      model: "nvidia_nim/meta/llama-3.1-8b-instruct"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
   - model_name: "claude-3-opus-20240229"
