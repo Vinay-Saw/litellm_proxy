@@ -1,11 +1,11 @@
 model_list:
-  # 1. Default / Opus 5.5 (Maps to your primary ultra model)
-  - model_name: "claude-3-5-opus-20241022" # Legacy fallback if requested
+  # 1. Default / Opus 5.5 (Fixes the 400 BadRequestError)
+  - model_name: "claude-opus-5-5" # Exact name requested by Claude Code
     litellm_params:
       model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
-  - model_name: "opus-5.5" # The new default recommended option
+  - model_name: "opus-5.5"
     litellm_params:
       model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
@@ -16,19 +16,34 @@ model_list:
       model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
-  # 3. Fable 5.1 (New reasoning/long-running model option)
-  - model_name: "fable-5.1"
+  # 3. Fable 5.1 (Add variant just in case it passes with a prefix)
+  - model_name: "claude-fable-5-1"
     litellm_params:
-      model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b" # Or replace with a specific long-context model if preferred
+      model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
-  # 4. Sonnet 5.5 (Efficient routine task option)
+  - model_name: "fable-5.1"
+    litellm_params:
+      model: "nvidia_nim/nvidia/nemotron-3-ultra-550b-a55b"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
+  # 4. Sonnet 5.5 (Add variant just in case it passes with a prefix)
+  - model_name: "claude-sonnet-5-5"
+    litellm_params:
+      model: "nvidia_nim/z-ai/glm-5.3"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
   - model_name: "sonnet-5.5"
     litellm_params:
       model: "nvidia_nim/z-ai/glm-5.3"
       api_key: "os.environ/NVIDIA_NIM_API_KEY"
 
-  # 5. Haiku 5.5 (Fastest answer option)
+  # 5. Haiku 5.5 (Add variant just in case it passes with a prefix)
+  - model_name: "claude-haiku-5-5"
+    litellm_params:
+      model: "nvidia_nim/moonshotai/kimi-k3"
+      api_key: "os.environ/NVIDIA_NIM_API_KEY"
+
   - model_name: "haiku-5.5"
     litellm_params:
       model: "nvidia_nim/moonshotai/kimi-k3"
